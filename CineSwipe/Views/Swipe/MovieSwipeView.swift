@@ -23,8 +23,6 @@ struct MovieSwipeView: View {
 
     @State private var currentIndex: Int = 0
     @State private var dragOffset: CGSize = .zero
-    @State private var lastAction: SwipeDirectionView? = nil
-    @State private var showActionLabel: Bool = false
 
     var body: some View {
         ZStack {
