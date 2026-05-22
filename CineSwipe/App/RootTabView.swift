@@ -21,7 +21,11 @@ struct RootTabView: View {
             .tag(Tab.discover)
 
             NavigationStack {
-                Text("Swipe")               // placeholder, replaced in Phase 8
+                SwipeFeedView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationDestination(for: Int.self) { id in
+                        MovieDetailView(movieId: id)
+                    }
             }
             .tabItem { Label("Swipe", systemImage: "rectangle.stack") }
             .tag(Tab.swipe)
