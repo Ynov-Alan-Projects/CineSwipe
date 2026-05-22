@@ -88,4 +88,36 @@ actor TMDBClient {
             throw APIError.transport(error)
         }
     }
+
+    // MARK: - Typed endpoints
+
+    func trendingWeek(page: Int = 1) async throws -> PaginatedResponse<Movie> {
+        let (path, query) = TMDBEndpoints.trendingWeek(page: page)
+        return try await get(path, query: query)
+    }
+
+    func popular(page: Int = 1) async throws -> PaginatedResponse<Movie> {
+        let (path, query) = TMDBEndpoints.popular(page: page)
+        return try await get(path, query: query)
+    }
+
+    func topRated(page: Int = 1) async throws -> PaginatedResponse<Movie> {
+        let (path, query) = TMDBEndpoints.topRated(page: page)
+        return try await get(path, query: query)
+    }
+
+    func upcoming(page: Int = 1) async throws -> PaginatedResponse<Movie> {
+        let (path, query) = TMDBEndpoints.upcoming(page: page)
+        return try await get(path, query: query)
+    }
+
+    func discoverByGenre(_ genreId: Int, page: Int = 1) async throws -> PaginatedResponse<Movie> {
+        let (path, query) = TMDBEndpoints.discoverByGenre(genreId, page: page)
+        return try await get(path, query: query)
+    }
+
+    func movieDetail(id: Int) async throws -> MovieDetail {
+        let (path, query) = TMDBEndpoints.movieDetail(id: id)
+        return try await get(path, query: query)
+    }
 }
