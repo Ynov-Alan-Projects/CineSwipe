@@ -1,6 +1,6 @@
 //
 //  TMDBClient.swift
-//  Popcorn
+//  CineSwipe
 
 
 import Foundation

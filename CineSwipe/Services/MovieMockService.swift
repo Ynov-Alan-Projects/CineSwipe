@@ -1,6 +1,6 @@
 //
 //  MovieMockService.swift
-//  Popcorn
+//  CineSwipe
 
 
 

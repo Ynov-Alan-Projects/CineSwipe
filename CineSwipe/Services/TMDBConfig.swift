@@ -1,6 +1,6 @@
 //
 //  TMDBConfig.swift
-//  Popcorn
+//  CineSwipe
 
 
 

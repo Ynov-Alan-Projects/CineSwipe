@@ -1,6 +1,6 @@
 //
 //  MovieSwipeView.swift
-//  Popcorn
+//  CineSwipe
 
 
 
