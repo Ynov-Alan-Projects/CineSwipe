@@ -22,8 +22,8 @@ actor TMDBClient {
         self.decoder = dec
     }
     
-    func get<T: Decodable>(_ path: String,
-                           query: [URLQueryItem] = []) async throws -> T {
+    func get<T: Decodable & Sendable>(_ path: String,
+                                      query: [URLQueryItem] = []) async throws -> T {
         var components = URLComponents(
             url: TMDBConfig.baseURL.appendingPathComponent(path),
             resolvingAgainstBaseURL: false
@@ -54,9 +54,9 @@ actor TMDBClient {
         }
     }
     
-    func post<T: Decodable>(_ path: String,
-                            query: [URLQueryItem] = [],
-                            body: Encodable) async throws -> T {
+    func post<T: Decodable & Sendable>(_ path: String,
+                                       query: [URLQueryItem] = [],
+                                       body: Encodable) async throws -> T {
         var components = URLComponents(
             url: TMDBConfig.baseURL.appendingPathComponent(path),
             resolvingAgainstBaseURL: false
@@ -121,3 +121,4 @@ actor TMDBClient {
         return try await get(path, query: query)
     }
 }
+

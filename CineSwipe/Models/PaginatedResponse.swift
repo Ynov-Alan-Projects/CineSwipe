@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct PaginatedResponse<T: Codable & Sendable>: Codable, Sendable {
+nonisolated struct PaginatedResponse<T: Codable & Sendable>: Codable, Sendable {
     let page: Int
     let results: [T]
     let totalPages: Int

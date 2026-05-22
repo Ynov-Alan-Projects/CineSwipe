@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable, Sendable, Identifiable {
+nonisolated struct Movie: Codable, Sendable, Identifiable {
     let adult: Bool
     let backdropPath: String?
     let genreIDS: [Int]
@@ -80,6 +80,40 @@ struct Movie: Codable, Sendable, Identifiable {
             self.releaseDate = nil
         }
     }
+    
+    init(
+        adult: Bool,
+        backdropPath: String?,
+        genreIDS: [Int],
+        id: Int,
+        title: String,
+        originalLanguage: String,
+        originalTitle: String,
+        overview: String,
+        popularity: Double,
+        posterPath: String?,
+        releaseDate: Date?,
+        softcore: Bool,
+        video: Bool,
+        voteAverage: Double,
+        voteCount: Int
+    ) {
+        self.adult = adult
+        self.backdropPath = backdropPath
+        self.genreIDS = genreIDS
+        self.id = id
+        self.title = title
+        self.originalLanguage = originalLanguage
+        self.originalTitle = originalTitle
+        self.overview = overview
+        self.popularity = popularity
+        self.posterPath = posterPath
+        self.releaseDate = releaseDate
+        self.softcore = softcore
+        self.video = video
+        self.voteAverage = voteAverage
+        self.voteCount = voteCount
+    }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -94,14 +128,7 @@ struct Movie: Codable, Sendable, Identifiable {
         self.popularity = try c.decode(Double.self, forKey: .popularity)
         self.posterPath = try c.decodeIfPresent(String.self, forKey: .posterPath)
 
-        if let raw = try c.decodeIfPresent(String.self, forKey: .releaseDate), !raw.isEmpty {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            self.releaseDate = formatter.date(from: raw)
-        } else {
-            self.releaseDate = nil
-        }
+        self.releaseDate = try c.decodeIfPresent(Date.self, forKey: .releaseDate)
 
         self.softcore = try c.decodeIfPresent(Bool.self, forKey: .softcore) ?? false
         self.video = try c.decode(Bool.self, forKey: .video)
@@ -113,9 +140,8 @@ struct Movie: Codable, Sendable, Identifiable {
 extension Movie {
     var releaseYear: String {
         guard let date = releaseDate else { return "N/A" }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        return formatter.string(from: date)
+        let year = Calendar(identifier: .gregorian).component(.year, from: date)
+        return String(year)
     }
 }
 

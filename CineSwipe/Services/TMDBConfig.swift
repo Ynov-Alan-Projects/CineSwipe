@@ -6,7 +6,7 @@
 
 import Foundation
 
-enum TMDBConfig {
+nonisolated enum TMDBConfig {
     static let baseURL    = URL(string: "https://api.themoviedb.org/3")!
     static let imageBase  = URL(string: "https://image.tmdb.org/t/p")!
 
@@ -14,7 +14,7 @@ enum TMDBConfig {
     static let bearerToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNDhjMDZkMzZhN2QwMWIxMmJhMWE5N2ZmNTkxNDNmOSIsIm5iZiI6MTc3OTQ0MTA1My4yMjg5OTk5LCJzdWIiOiI2YTEwMWQ5ZDhmODg4OTFhNjI0NTllZmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.xW8Sxdp2B6o3EFiOLs_3UHcdhe_dhAveYs8nfjo6IGk"
 }
 
-enum APIError: LocalizedError {
+nonisolated enum APIError: LocalizedError {
     case invalidURL
     case invalidResponse
     case http(Int)

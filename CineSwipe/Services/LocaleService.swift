@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum LocaleService {
+nonisolated enum LocaleService {
     /// TMDB-compatible language tag, e.g. "fr-FR", "en-US". Falls back to "en-US".
     static var language: String {
         let lang = Locale.current.language.languageCode?.identifier ?? "en"

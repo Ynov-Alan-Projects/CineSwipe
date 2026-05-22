@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum TMDBEndpoints {
+nonisolated enum TMDBEndpoints {
     static var commonQuery: [URLQueryItem] {
         [
             URLQueryItem(name: "language", value: LocaleService.language),

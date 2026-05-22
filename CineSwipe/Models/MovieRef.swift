@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct MovieRef: Codable, Identifiable, Equatable, Hashable, Sendable {
+nonisolated struct MovieRef: Codable, Identifiable, Equatable, Hashable, Sendable {
     let id: Int
     let title: String
     let posterPath: String?
@@ -28,9 +28,8 @@ extension MovieRef {
 
     var releaseYear: String {
         guard let date = releaseDate else { return "N/A" }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        return formatter.string(from: date)
+        let year = Calendar(identifier: .gregorian).component(.year, from: date)
+        return String(year)
     }
 
     func posterURL(_ size: Movie.PosterSize = .w342) -> URL? {

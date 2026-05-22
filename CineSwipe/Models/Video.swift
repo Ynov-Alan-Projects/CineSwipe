@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Video: Codable, Identifiable, Hashable, Sendable {
+nonisolated struct Video: Codable, Identifiable, Hashable, Sendable {
     let id: String
     let key: String
     let name: String
@@ -22,6 +22,6 @@ struct Video: Codable, Identifiable, Hashable, Sendable {
     }
 }
 
-struct VideosResponse: Codable, Sendable {
+nonisolated struct VideosResponse: Codable, Sendable {
     let results: [Video]
 }

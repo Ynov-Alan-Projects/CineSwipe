@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct MovieDetail: Codable, Identifiable, Sendable {
+nonisolated struct MovieDetail: Codable, Identifiable, Sendable {
     let id: Int
     let title: String
     let originalTitle: String
@@ -22,7 +22,7 @@ struct MovieDetail: Codable, Identifiable, Sendable {
     let videos: VideosResponse
     let watchProviders: WatchProvidersResponse
 
-    struct DetailGenre: Codable, Identifiable, Hashable, Sendable {
+    nonisolated struct DetailGenre: Codable, Identifiable, Hashable, Sendable {
         let id: Int
         let name: String
     }
@@ -55,23 +55,15 @@ struct MovieDetail: Codable, Identifiable, Sendable {
         self.videos = try c.decode(VideosResponse.self, forKey: .videos)
         self.watchProviders = try c.decode(WatchProvidersResponse.self, forKey: .watchProviders)
 
-        if let raw = try c.decodeIfPresent(String.self, forKey: .releaseDate), !raw.isEmpty {
-            let f = DateFormatter()
-            f.dateFormat = "yyyy-MM-dd"
-            f.locale = Locale(identifier: "en_US_POSIX")
-            self.releaseDate = f.date(from: raw)
-        } else {
-            self.releaseDate = nil
-        }
+        self.releaseDate = try c.decodeIfPresent(Date.self, forKey: .releaseDate)
     }
 }
 
 extension MovieDetail {
     var releaseYear: String {
         guard let date = releaseDate else { return "N/A" }
-        let f = DateFormatter()
-        f.dateFormat = "yyyy"
-        return f.string(from: date)
+        let year = Calendar(identifier: .gregorian).component(.year, from: date)
+        return String(year)
     }
 
     func posterURL(_ size: Movie.PosterSize = .w500) -> URL? {

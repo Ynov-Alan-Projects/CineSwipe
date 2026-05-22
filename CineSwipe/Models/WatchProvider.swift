@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct WatchProvider: Codable, Identifiable, Hashable, Sendable {
+nonisolated struct WatchProvider: Codable, Identifiable, Hashable, Sendable {
     let providerId: Int
     let providerName: String
     let logoPath: String?
@@ -26,13 +26,13 @@ struct WatchProvider: Codable, Identifiable, Hashable, Sendable {
     }
 }
 
-struct CountryProviders: Codable, Sendable {
+nonisolated struct CountryProviders: Codable, Sendable {
     let link: String?
     let flatrate: [WatchProvider]?
     let rent: [WatchProvider]?
     let buy: [WatchProvider]?
 }
 
-struct WatchProvidersResponse: Codable, Sendable {
+nonisolated struct WatchProvidersResponse: Codable, Sendable {
     let results: [String: CountryProviders]
 }

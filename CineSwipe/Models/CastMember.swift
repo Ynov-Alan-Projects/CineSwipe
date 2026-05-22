@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct CastMember: Codable, Identifiable, Hashable, Sendable {
+nonisolated struct CastMember: Codable, Identifiable, Hashable, Sendable {
     let id: Int
     let name: String
     let character: String
@@ -25,6 +25,6 @@ struct CastMember: Codable, Identifiable, Hashable, Sendable {
     }
 }
 
-struct Credits: Codable, Sendable {
+nonisolated struct Credits: Codable, Sendable {
     let cast: [CastMember]
 }
