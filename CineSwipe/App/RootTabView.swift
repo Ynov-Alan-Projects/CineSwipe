@@ -37,8 +37,7 @@ struct RootTabView: View {
             .tag(Tab.library)
 
             NavigationStack {
-                Text("Réglages")            // placeholder, replaced in Phase 9
-                    .navigationTitle("Réglages")
+                SettingsView()
             }
             .tabItem { Label("Réglages", systemImage: "gearshape") }
             .tag(Tab.settings)
