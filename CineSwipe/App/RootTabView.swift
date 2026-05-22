@@ -31,8 +31,7 @@ struct RootTabView: View {
             .tag(Tab.swipe)
 
             NavigationStack {
-                Text("Bibliothèque")        // placeholder, replaced in Phase 7
-                    .navigationTitle("Bibliothèque")
+                LibraryView(selectedTab: $selection)
             }
             .tabItem { Label("Bibliothèque", systemImage: "heart.text.square") }
             .tag(Tab.library)
