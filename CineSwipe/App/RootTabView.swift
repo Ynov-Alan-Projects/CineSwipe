@@ -15,8 +15,7 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationStack {
-                Text("Découvrir")          // placeholder, replaced in Phase 5
-                    .navigationTitle("Découvrir")
+                DiscoverView()
             }
             .tabItem { Label("Découvrir", systemImage: "sparkles") }
             .tag(Tab.discover)
